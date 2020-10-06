@@ -1,13 +1,14 @@
 {
   "name": "xmrig",
-  "version": "1.0.0",
-  "description": "High performance, open source, cross platform RandomX, KawPow, CryptoNight and AstroBWT unified CPU/GPU miner",
+  "version": "0.0.0",
+  "private": true,
   "dependencies": {},
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.1.1",
+    "@semantic-release/npm": "^7.0.6",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "commitlint": "^11.0.0",
     "conventional-changelog-conventionalcommits": "^4.4.0",
@@ -16,17 +17,22 @@
     "prettier": "^2.1.2",
     "semantic-release": "^17.1.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hendrikhalkow/xmrig.git"
+  "scripts": {
+    "semantic-release": "semantic-release"
   },
-  "keywords": [
-    "monero"
-  ],
-  "author": "Hendrik M Halkow <hendrik@halkow.com>",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/hendrikhalkow/xmrig/issues"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
-  "homepage": "https://github.com/hendrikhalkow/xmrig#readme"
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --write"
+    ],
+    "*.{java}": []
+  },
+  "engines": {
+    "node": "^14.12.0"
+  }
 }
